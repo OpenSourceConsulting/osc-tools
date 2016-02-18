@@ -6,6 +6,7 @@ package kr.osci.ide.codegen.generator;
 import java.util.List;
 
 import kr.osci.ide.codegen.utils.PluginUtil;
+import kr.osci.ide.codegen.utils.StringUtil;
 
 /**
  * <pre>
@@ -17,8 +18,12 @@ import kr.osci.ide.codegen.utils.PluginUtil;
  */
 public class CodeModel {
 
-	private String dtoSimpleName;
-	private String clsSuffix;
+	private String domainName; // for method name
+	private String dtoSimpleName; // domainName + suffixDto
+	private String domainArgName;
+	private String suffixDao;
+	private String suffixDto;
+	private String daoFieldName;
 	private String packageName;
 	private String tableName;
 	
@@ -28,18 +33,32 @@ public class CodeModel {
 	private String pagingQuery = "LIMIT #{start}, #{limit}";
 	private String searchQuery = "user_name LIKE concat('%',#{search},'%')";
 	
-	public CodeModel(String packageName, String dtoSimpleName, String tableName) {
+	public CodeModel(String packageName, String domainName, String tableName, String suffixDao, String suffixDto) {
 		this.packageName = packageName;
-		this.dtoSimpleName = dtoSimpleName;
+		this.domainName = domainName;
+		this.dtoSimpleName = domainName + suffixDto;
 		this.tableName = tableName;
+		this.suffixDao = suffixDao;
+		this.suffixDto = suffixDto;
+		
+		this.domainArgName = StringUtil.convertFieldName(domainName);
+		this.daoFieldName = StringUtil.convertFieldName(suffixDao);
 	}
 
-	public String getClsSuffix() {
-		return clsSuffix;
+	public String getSuffixDao() {
+		return suffixDao;
 	}
 
-	public void setClsSuffix(String clsSuffix) {
-		this.clsSuffix = clsSuffix;
+	public void setSuffixDao(String suffixDao) {
+		this.suffixDao = suffixDao;
+	}
+
+	public String getSuffixDto() {
+		return suffixDto;
+	}
+
+	public void setSuffixDto(String suffixDto) {
+		this.suffixDto = suffixDto;
 	}
 
 	public String getDtoSimpleName() {
@@ -94,14 +113,17 @@ public class CodeModel {
 		return getDtoPackageName() + "." + this.dtoSimpleName;
 	}
 	
+	/**
+	 * for method name
+	 */
 	public String getDomainName(){
-		String suffixDto = PluginUtil.getPreferenceProperty(SourceCodeGenerator.PREFER_PROP_SUFFIX_DTO);
 		
-		if("".equals(suffixDto)){
-			return this.dtoSimpleName;
-		}
+		return domainName;
+	}
+	
+	public String getDomainArgName(){
 		
-		return this.dtoSimpleName.replace(suffixDto, "");
+		return domainArgName;
 	}
 
 	public String getPagingQuery() {
@@ -122,6 +144,10 @@ public class CodeModel {
 	
 	public String getMapperNamespace(){
 		return getDomainName();
+	}
+	
+	public String getDaoFieldName() {
+		return daoFieldName;
 	}
 
 }

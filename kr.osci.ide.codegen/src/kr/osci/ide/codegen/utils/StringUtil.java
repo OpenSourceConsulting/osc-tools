@@ -26,10 +26,16 @@ public abstract class StringUtil {
 	}
 	
 	public static String convertFirstCharToUpperCase(String str){
+		if (str == null || str.length() == 0) {
+			return "";
+		}
 		return str.substring(0, 1).toUpperCase() + str.substring(1);
 	}
 	
 	public static String convertFieldName(String str) {
+		if (str == null || str.length() == 0) {
+			return "";
+		}
 		return str.substring(0, 1).toLowerCase() + str.substring(1);
 	}
 	

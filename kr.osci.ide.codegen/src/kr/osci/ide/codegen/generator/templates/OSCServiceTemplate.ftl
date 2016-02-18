@@ -42,35 +42,35 @@ import com.athena.peacock.controller.web.common.model.ExtjsGridParam;
 public class ${model.domainName}Service {
 
 	@Autowired
-	private ${model.domainName}Dao dao;
+	private ${model.dtoSimpleName} ${model.daoFieldName};
 	
 	public ${model.domainName}Service() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void insert${model.domainName}(${model.domainName}Dto user){
-		dao.insert${model.domainName}(user);
+	public void insert${model.domainName}(${model.dtoSimpleName} ${model.domainArgName}){
+		${model.daoFieldName}.insert${model.domainName}(${model.domainArgName});
 	}
 	
 	public List<${model.dtoSimpleName}> get${model.domainName}List(ExtjsGridParam gridParam){
-		return dao.get${model.domainName}List(gridParam);
+		return ${model.daoFieldName}.get${model.domainName}List(gridParam);
 	}
 	
 	public int get${model.domainName}ListTotalCount(ExtjsGridParam gridParam){
 		
-		return dao.get${model.domainName}ListTotalCount(gridParam);
+		return ${model.daoFieldName}.get${model.domainName}ListTotalCount(gridParam);
 	}
 	
-	public ${model.dtoSimpleName} get${model.domainName}(${model.dtoSimpleName} param){
-		return dao.get${model.domainName}(param);
+	public ${model.dtoSimpleName} get${model.domainName}(${model.dtoSimpleName} ${model.domainArgName}){
+		return ${model.daoFieldName}.get${model.domainName}(${model.domainArgName});
 	}
 	
-	public void update${model.domainName}(${model.dtoSimpleName} param){
-		dao.update${model.domainName}(param);
+	public void update${model.domainName}(${model.dtoSimpleName} ${model.domainArgName}){
+		${model.daoFieldName}.update${model.domainName}(${model.domainArgName});
 	}
 	
-	public void delete${model.domainName}(${model.dtoSimpleName} param){
-		dao.delete${model.domainName}(param);
+	public void delete${model.domainName}(${model.dtoSimpleName} ${model.domainArgName}){
+		${model.daoFieldName}.delete${model.domainName}(${model.domainArgName});
 	}
 
 }

@@ -72,11 +72,11 @@ public class ${model.domainName}Controller {
 	
 	@RequestMapping("/create")
 	@ResponseBody
-	public SimpleJsonResponse create(${model.dtoSimpleName} param){
+	public SimpleJsonResponse create(${model.dtoSimpleName} ${model.domainArgName}){
 		
 		SimpleJsonResponse jsonRes = new SimpleJsonResponse();
 		try{
-			service.insert${model.domainName}(param);
+			service.insert${model.domainName}(${model.domainArgName});
 			jsonRes.setMsg("사용자가 정상적으로 생성되었습니다.");
 			
 		}catch(Exception e){
@@ -93,11 +93,11 @@ public class ${model.domainName}Controller {
 	
 	@RequestMapping("/update")
 	@ResponseBody
-	public SimpleJsonResponse update(${model.dtoSimpleName} param){
+	public SimpleJsonResponse update(${model.dtoSimpleName} ${model.domainArgName}){
 		
 		SimpleJsonResponse jsonRes = new SimpleJsonResponse();
 		try{
-			service.update${model.domainName}(param);
+			service.update${model.domainName}(${model.domainArgName});
 			jsonRes.setMsg("사용자 정보가 정상적으로 수정되었습니다.");
 			
 		}catch(Exception e){
@@ -114,11 +114,11 @@ public class ${model.domainName}Controller {
 	
 	@RequestMapping("/delete")
 	@ResponseBody
-	public SimpleJsonResponse delete(${model.dtoSimpleName} param){
+	public SimpleJsonResponse delete(${model.dtoSimpleName} ${model.domainArgName}){
 		
 		SimpleJsonResponse jsonRes = new SimpleJsonResponse();
 		try{
-			service.delete${model.domainName}(param);
+			service.delete${model.domainName}(${model.domainArgName});
 			jsonRes.setMsg("사용자 정보가 정상적으로 삭제되었습니다.");
 			
 		}catch(Exception e){
@@ -134,11 +134,11 @@ public class ${model.domainName}Controller {
 	
 	@RequestMapping("/get${model.domainName}", method = RequestMethod.GET)
 	@ResponseBody
-	public DtoJsonResponse get${model.domainName}(${model.dtoSimpleName} param){
+	public DtoJsonResponse get${model.domainName}(${model.dtoSimpleName} ${model.domainArgName}){
 	
 		DtoJsonResponse jsonRes = new DtoJsonResponse();
 		
-		jsonRes.setData(service.get${model.domainName}(param));
+		jsonRes.setData(service.get${model.domainName}(${model.domainArgName}));
 		
 		return jsonRes;
 	}

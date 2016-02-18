@@ -575,7 +575,8 @@ public class OSCCodeGenDialog extends TitleAreaDialog {
 				
 				final String dtoSuperClass = PluginUtil.getPreferenceProperty(SourceCodeGenerator.PREFER_PROP_DTO_PARENT);
 				final String subPackageDto = PluginUtil.getPreferenceProperty(SourceCodeGenerator.PREFER_PROP_SUB_PACKAGE_DTO);
-				String suffixDto = PluginUtil.getPreferenceProperty(SourceCodeGenerator.PREFER_PROP_SUFFIX_DTO);
+				final String suffixDto = PluginUtil.getPreferenceProperty(SourceCodeGenerator.PREFER_PROP_SUFFIX_DTO);
+				final String suffixDao = PluginUtil.getPreferenceProperty(SourceCodeGenerator.PREFER_PROP_SUFFIX_DAO);
 				
 				final IPackageFragmentRoot root = pkgCreator.getPackageFragmentRoot();
 				final String dtoTypeName = StringUtil.convertUnderscoreNameToClassName(selectedTableName)+suffixDto ;
@@ -592,7 +593,7 @@ public class OSCCodeGenDialog extends TitleAreaDialog {
 						try {
 							JavaField[] fields = Arrays.copyOf(columns, columns.length, new JavaField[0].getClass());
 							
-							CodeModel codeModel = new CodeModel(pkgCreator.getPackageText(), dtoTypeName, selectedTableName);
+							CodeModel codeModel = new CodeModel(pkgCreator.getPackageText(), dtoTypeName, selectedTableName, suffixDao, suffixDto);
 							codeModel.setFields(fields);
 							
 							if(codeTypes.isSelected(1)){

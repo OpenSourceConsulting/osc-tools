@@ -285,14 +285,13 @@ public class SourceCodeGenerator {
 		IFile iFile = null;
 		try{
 			String subPackageDao = PluginUtil.getPreferenceProperty(PREFER_PROP_SUB_PACKAGE_DAO);
-			String suffixDao = PluginUtil.getPreferenceProperty(PREFER_PROP_SUFFIX_DAO);
+			
 			
 			/* Create a data-model */
-			model.setClsSuffix(suffixDao);
 	        Map<String, CodeModel> dataModel = new HashMap<String, CodeModel>();
 	        dataModel.put("model", model);
 	        
-	        iFile = PluginUtil.getIFile(pkgFragmentRoot, packageName+ subPackageDao, model.getDomainName() + suffixDao + ".java");
+	        iFile = PluginUtil.getIFile(pkgFragmentRoot, packageName+ subPackageDao, model.getDomainName() + model.getSuffixDao() + ".java");
 	        
 	        generateSourceFile(dataModel, iFile, "OSCDaoTemplate.ftl", null);
         
