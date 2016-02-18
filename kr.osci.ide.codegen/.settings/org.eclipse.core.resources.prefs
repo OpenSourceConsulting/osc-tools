@@ -1,0 +1,16 @@
+eclipse.preferences.version=1
+encoding//src/com/hhi/hiway/ide/codegen/generator/templates/ControllerDataSetTemplate.ftl=UTF-8
+encoding//src/com/hhi/hiway/ide/codegen/generator/templates/ControllerTemplate.ftl=UTF-8
+encoding//src/com/hhi/hiway/ide/codegen/generator/templates/ControllerTemplateForGC.ftl=UTF-8
+encoding//src/com/hhi/hiway/ide/codegen/generator/templates/DataSetDaoTemplate.ftl=UTF-8
+encoding//src/com/hhi/hiway/ide/codegen/generator/templates/DataSetDomainTemplate.ftl=UTF-8
+encoding//src/com/hhi/hiway/ide/codegen/generator/templates/DomainListTemplate.ftl=UTF-8
+encoding//src/com/hhi/hiway/ide/codegen/generator/templates/DomainTemplate.ftl=UTF-8
+encoding//src/com/hhi/hiway/ide/codegen/generator/templates/MyBatisMapperTemplate.ftl=UTF-8
+encoding//src/com/hhi/hiway/ide/codegen/generator/templates/ServiceImplTemplate.ftl=UTF-8
+encoding//src/com/hhi/hiway/ide/codegen/generator/templates/ServiceTemplate.ftl=UTF-8
+encoding//src/kr/osci/ide/codegen/generator/templates/MysqlOscMapperTemplate.ftl=UTF-8
+encoding//src/kr/osci/ide/codegen/generator/templates/OSCControllerTemplate.ftl=UTF-8
+encoding//src/kr/osci/ide/codegen/generator/templates/OSCDaoTemplate.ftl=UTF-8
+encoding//src/kr/osci/ide/codegen/generator/templates/OSCServiceTemplate.ftl=UTF-8
+encoding/<project>=MS949

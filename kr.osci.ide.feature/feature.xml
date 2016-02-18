@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="kr.osci.ide.feature"
+      label="OSC Code Generator"
+      version="1.0.1.qualifier"
+      provider-name="Open Source Consulting, Inc."
+      plugin="kr.osci.ide.codegen">
+
+   <description url="http://www.example.com/description">
+      Open Source Consulting, Inc. 의 CRUD 코드 자동생성기 입니다.
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <plugin
+         id="kr.osci.ide.codegen"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

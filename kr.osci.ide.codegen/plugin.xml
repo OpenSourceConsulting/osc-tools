@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="kr.osci.ide.codegen.commands.category"
+            name="OSC Tools">
+      </category>
+      <command
+            categoryId="kr.osci.ide.codegen.commands.category"
+            defaultHandler="kr.osci.ide.codegen.handlers.CodeGenerator"
+            id="kr.osci.ide.codegen.commands.codeGenCommand"
+            name="Code Generator">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               label="OSC"
+               id="kr.osci.ide.codegen.menus.OSCMenu">
+            <command
+                  commandId="kr.osci.ide.codegen.commands.codeGenCommand"
+                  id="kr.osci.ide.codegen.menus.codeGenCommand">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any?before=additions">
+         <menu
+               id="kr.osci.ide.codegen.popup.OSCMenu"
+               label="OSC">
+            <command
+                  commandId="kr.osci.ide.codegen.commands.codeGenCommand"
+                  id="kr.osci.ide.codegen.popup.codeGenCommand"
+                  style="push">
+                  <visibleWhen checkEnabled="false">
+	               <reference
+	                     definitionId="osc-codegen.menu.visibleWhen.definition">
+	               </reference>
+	            </visibleWhen>
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="kr.osci.ide.preference.OSCPreferencePage"
+            id="kr.osci.ide.preference.page"
+            name="OSC">
+      </page>
+      <page
+            category="kr.osci.ide.preference.page"
+            class="kr.osci.ide.codegen.preference.CodeGenPreferencePage"
+            id="kr.osci.ide.codegen.preference.page"
+            name="CodeGenerator">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="osc-codegen.menu.visibleWhen.definition">
+            <with variable="activeMenuSelection">
+ 				<iterate ifEmpty="false">
+ 					<or>
+ 						<instanceof
+				              value="org.eclipse.jdt.core.IPackageFragmentRoot">
+				        </instanceof>
+				        <instanceof
+				              value="org.eclipse.jdt.core.IPackageFragment">
+				        </instanceof>
+           			</or>
+ 				</iterate>
+ 			</with>
+      </definition>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <scope
+            class="kr.osci.ide.codegen.preference.CodeGenPreferencePage"
+            name="CodeGenPreferencePage">
+      </scope>
+      <initializer
+            class="kr.osci.ide.codegen.preference.PreferenceInitializer">
+      </initializer>
+   </extension>
+
+</plugin>
