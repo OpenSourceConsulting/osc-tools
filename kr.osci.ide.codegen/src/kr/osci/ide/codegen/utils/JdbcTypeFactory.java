@@ -90,7 +90,8 @@ public class JdbcTypeFactory {
 		typeMap.put(Types.DECIMAL, TYPE_OBJECT_LONG);
 		typeMap.put(Types.DATE, TYPE_SQL_DATE);
 		typeMap.put(Types.TIME, TYPE_SQL_TIME);
-		typeMap.put(Types.TIMESTAMP, TYPE_SQL_TIMESTAMP);
+		//typeMap.put(Types.TIMESTAMP, TYPE_SQL_TIMESTAMP);
+		typeMap.put(Types.TIMESTAMP, TYPE_SQL_DATE);
 		typeMap.put(Types.CLOB, TYPE_OBJECT_STRING);
 		typeMap.put(Types.BLOB, TYPE_PRIMITIVE_BYTE_ARRAY);
 		typeMap.put(Types.VARBINARY, TYPE_PRIMITIVE_BYTE_ARRAY);

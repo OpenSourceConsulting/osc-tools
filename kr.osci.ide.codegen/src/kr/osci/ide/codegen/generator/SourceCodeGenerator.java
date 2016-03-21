@@ -491,6 +491,34 @@ public class SourceCodeGenerator {
 		
 	}
 	
+	public static IFile createBootstrapFile(IPackageFragmentRoot pkgFragmentRoot, String packageName, CodeModel model, IProgressMonitor monitor) throws IOException, CoreException{
+		
+		if (monitor == null) {
+			monitor= new NullProgressMonitor();
+		}
+
+		monitor.beginTask("Bootstrap file »ý¼º.", 1);
+		IFile iFile = null;
+		try{
+			
+			String subPackageMapper = PluginUtil.getPreferenceProperty(PREFER_PROP_SUB_PACKAGE_MAPPER);
+			//String suffixMapper = PluginUtil.getPreferenceProperty(PREFER_PROP_SUFFIX_MAPPER);
+			
+			/* Create a data-model */
+	        Map<String, Object> dataModel = new HashMap<String, Object>();
+	        dataModel.put("model", model);
+	        
+	        iFile = PluginUtil.getIFile(pkgFragmentRoot, packageName + subPackageMapper, model.getDomainName() + ".html");
+	        
+	        generateSourceFile(dataModel, iFile, "BootstrapTemplate.ftl", null);
+	        monitor.worked(1);
+	        
+		}finally{
+			monitor.done();
+		}
+        return iFile;
+	}
+	
 	public static void generateServiceDataSetCode(GenerateModel genModel, String dataSetClass, IProgressMonitor monitor)throws JavaModelException, PartInitException{
 		
 		String dataSet = genModel.getPackageName()+ ".domain." + dataSetClass;

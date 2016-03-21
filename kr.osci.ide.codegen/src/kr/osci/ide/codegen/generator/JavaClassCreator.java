@@ -84,7 +84,7 @@ public class JavaClassCreator {
 		this.typeName = typeName;
 	}
 	
-	public void createType(IProgressMonitor monitor) throws CoreException, InterruptedException {
+	public void createType(IProgressMonitor monitor, String tableName) throws CoreException, InterruptedException {
 		
 		if (monitor == null) {
 			monitor= new NullProgressMonitor();
@@ -128,7 +128,7 @@ public class JavaClassCreator {
 
 			//String simpleTypeStub= constructSimpleTypeStub();
 			String simpleTypeStub= "public class " + typeName + "{ }";
-			String cuContent= constructCUContent(parentCU, typeName, simpleTypeStub, lineDelimiter);
+			String cuContent= constructCUContent(parentCU, typeName, simpleTypeStub, lineDelimiter, tableName);
 			buffer.setContents(cuContent);
 
 			CompilationUnit astRoot= createASTForImports(parentCU);
@@ -239,10 +239,15 @@ public class JavaClassCreator {
 	 *             new compilation unit fails
 	 * @since 2.1
 	 */
-	protected String constructCUContent(ICompilationUnit cu, String typeName, String typeContent, String lineDelimiter) throws CoreException {
+	protected String constructCUContent(ICompilationUnit cu, String typeName, String typeContent, String lineDelimiter, String tableName) throws CoreException {
 		String fileComment= CodeGeneration.getFileComment(cu, lineDelimiter);
 		//String typeComment= getTypeComment(cu, lineDelimiter);
 		String typeComment = CodeGeneration.getTypeComment(cu, typeName, new String[0], lineDelimiter);
+		
+		if (JavaField.useJPA) {
+			typeComment = typeComment + "@Entity\r\n@Table(name = \""+tableName+"\")";
+		}
+		
 		IPackageFragment pack= (IPackageFragment) cu.getParent();
 		String content= CodeGeneration.getCompilationUnitContent(cu, fileComment, typeComment, typeContent, lineDelimiter);
 		if (content != null) {

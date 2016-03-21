@@ -151,7 +151,7 @@ public class OSCCodeGenDialog extends TitleAreaDialog {
 	    
 	    GridData layoutData = new GridData(SWT.FILL, SWT.FILL, true, true);
 	    layoutData.heightHint = 400;
-	    layoutData.widthHint = 450;
+	    layoutData.widthHint = 550;
 	    
 	    container.setLayoutData(layoutData);
 	    container.setLayout(layout);
@@ -181,7 +181,7 @@ public class OSCCodeGenDialog extends TitleAreaDialog {
 		
 		
 		//------------------------- code types (CheckBox)
-		String[] buttonNames = new String[]{"SQL Mapper","Dto","Dao","Service","Controller"};
+		String[] buttonNames = new String[]{"SQL Mapper","Dto","Dao","Service","Controller","JPA","Bootstrap"};
 		codeTypes = new SelectionButtonDialogFieldGroup(SWT.CHECK, buttonNames, buttonNames.length);
 		codeTypes.setLabelText("Code Types: ");
 		
@@ -591,6 +591,7 @@ public class OSCCodeGenDialog extends TitleAreaDialog {
 						
 						monitor.beginTask("CRUD Code »ý¼º.", 5);
 						try {
+							JavaField.useJPA = codeTypes.isSelected(5);
 							JavaField[] fields = Arrays.copyOf(columns, columns.length, new JavaField[0].getClass());
 							
 							CodeModel codeModel = new CodeModel(pkgCreator.getPackageText(), dtoTypeName, selectedTableName, suffixDao, suffixDto);
@@ -609,7 +610,7 @@ public class OSCCodeGenDialog extends TitleAreaDialog {
 								creator.setSuperclass(dtoSuperClass);
 								creator.setFields( fields );
 								
-								creator.createType(new SubProgressMonitor(monitor, 1));
+								creator.createType(new SubProgressMonitor(monitor, 1), selectedTableName);
 							}
 							
 							
@@ -638,6 +639,10 @@ public class OSCCodeGenDialog extends TitleAreaDialog {
 								
 								if(codeTypes.isSelected(4)){
 									SourceCodeGenerator.createController(root, pkgCreator.getPackageText(), codeModel, new SubProgressMonitor(monitor, 1));
+								}
+								
+								if(codeTypes.isSelected(6)){
+									SourceCodeGenerator.createBootstrapFile(root, pkgCreator.getPackageText(), codeModel, new SubProgressMonitor(monitor, 1));
 								}
 								
 							}finally{

@@ -10,6 +10,8 @@ package kr.osci.ide.codegen.generator;
  * 
  */
 public class JavaField {
+	
+	public static boolean useJPA;
 
 	private String name;
 	private String type;
@@ -70,7 +72,13 @@ public class JavaField {
 	}
 	
 	public String getFieldContents(){
-		return "private "+ type + " " + name + ";";
+		
+		String fc = "private "+ type + " " + name + ";//" + this.column.getComments();
+		if(JavaField.useJPA){
+			fc = "@Column(name = \""+ this.column.getName() +"\")\r\n" + fc;
+		}
+		
+		return fc;
 	}
 	
 	public String getNameEx(){
