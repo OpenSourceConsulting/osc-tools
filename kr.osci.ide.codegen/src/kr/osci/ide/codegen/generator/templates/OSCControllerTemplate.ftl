@@ -37,7 +37,7 @@ public class ${model.domainName}Controller {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@RequestMapping("/list", method = RequestMethod.GET)
+	@RequestMapping(value=""/list", method = RequestMethod.GET)
 	@ResponseBody
 	public GridJsonResponse list(ExtjsGridParam gridParam){
 	
@@ -48,74 +48,42 @@ public class ${model.domainName}Controller {
 		return jsonRes;
 	}
 	
-	@RequestMapping("/create")
+	@RequestMapping(value=""/create")
 	@ResponseBody
-	public SimpleJsonResponse create(${model.dtoSimpleName} ${model.domainArgName}){
+	public SimpleJsonResponse create(SimpleJsonResponse jsonRes, ${model.dtoSimpleName} ${model.domainArgName}){
 		
-		SimpleJsonResponse jsonRes = new SimpleJsonResponse();
-		try{
-			service.insert${model.domainName}(${model.domainArgName});
-			jsonRes.setMsg("사용자가 정상적으로 생성되었습니다.");
-			
-		}catch(Exception e){
-			
-			jsonRes.setSuccess(false);
-			jsonRes.setMsg("사용자 생성 중 에러가 발생하였습니다.");
-			
-			e.printStackTrace();
-		}
+		service.insert${model.domainName}(${model.domainArgName});
+		jsonRes.setMsg("사용자가 정상적으로 생성되었습니다.");
 		
 		
 		return jsonRes;
 	}
 	
-	@RequestMapping("/update")
+	@RequestMapping(value="/update")
 	@ResponseBody
-	public SimpleJsonResponse update(${model.dtoSimpleName} ${model.domainArgName}){
+	public SimpleJsonResponse update(SimpleJsonResponse jsonRes, ${model.dtoSimpleName} ${model.domainArgName}){
 		
-		SimpleJsonResponse jsonRes = new SimpleJsonResponse();
-		try{
-			service.update${model.domainName}(${model.domainArgName});
-			jsonRes.setMsg("사용자 정보가 정상적으로 수정되었습니다.");
-			
-		}catch(Exception e){
-			
-			jsonRes.setSuccess(false);
-			jsonRes.setMsg("사용자 정보 수정 중 에러가 발생하였습니다.");
-			
-			e.printStackTrace();
-		}
+		service.update${model.domainName}(${model.domainArgName});
+		jsonRes.setMsg("사용자 정보가 정상적으로 수정되었습니다.");
 		
 		
 		return jsonRes;
 	}
 	
-	@RequestMapping("/delete")
+	@RequestMapping(value="/delete")
 	@ResponseBody
-	public SimpleJsonResponse delete(${model.dtoSimpleName} ${model.domainArgName}){
+	public SimpleJsonResponse delete(SimpleJsonResponse jsonRes, ${model.dtoSimpleName} ${model.domainArgName}){
 		
-		SimpleJsonResponse jsonRes = new SimpleJsonResponse();
-		try{
-			service.delete${model.domainName}(${model.domainArgName});
-			jsonRes.setMsg("사용자 정보가 정상적으로 삭제되었습니다.");
-			
-		}catch(Exception e){
-			
-			jsonRes.setSuccess(false);
-			jsonRes.setMsg("사용자 정보 삭제 중 에러가 발생하였습니다.");
-			
-			e.printStackTrace();
-		}
+		service.delete${model.domainName}(${model.domainArgName});
+		jsonRes.setMsg("사용자 정보가 정상적으로 삭제되었습니다.");
 		
 		return jsonRes;
 	}
 	
-	@RequestMapping("/get${model.domainName}", method = RequestMethod.GET)
+	@RequestMapping(value="/get${model.domainName}", method = RequestMethod.GET)
 	@ResponseBody
-	public DtoJsonResponse get${model.domainName}(${model.dtoSimpleName} ${model.domainArgName}){
+	public SimpleJsonResponse get${model.domainName}(SimpleJsonResponse jsonRes, ${model.dtoSimpleName} ${model.domainArgName}){
 	
-		DtoJsonResponse jsonRes = new DtoJsonResponse();
-		
 		jsonRes.setData(service.get${model.domainName}(${model.domainArgName}));
 		
 		return jsonRes;

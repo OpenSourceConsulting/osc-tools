@@ -283,6 +283,10 @@ public class SourceCodeGenerator {
 
 		monitor.beginTask("Dao »ý¼º.", 1);
 		IFile iFile = null;
+		String templateFile = "OSCDaoTemplate.ftl";
+		if (JavaField.useJPA) {
+			templateFile = "SpringJPARepoTemplate.ftl";
+		}
 		try{
 			String subPackageDao = PluginUtil.getPreferenceProperty(PREFER_PROP_SUB_PACKAGE_DAO);
 			
@@ -293,7 +297,7 @@ public class SourceCodeGenerator {
 	        
 	        iFile = PluginUtil.getIFile(pkgFragmentRoot, packageName+ subPackageDao, model.getDomainName() + model.getSuffixDao() + ".java");
 	        
-	        generateSourceFile(dataModel, iFile, "OSCDaoTemplate.ftl", null);
+	        generateSourceFile(dataModel, iFile, templateFile, null);
         
 		}finally{
 			monitor.done();
