@@ -37,7 +37,7 @@ public class ${model.domainName}Controller {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@RequestMapping(value=""/list", method = RequestMethod.GET)
+	@RequestMapping(value="/list", method = RequestMethod.GET)
 	@ResponseBody
 	public GridJsonResponse list(ExtjsGridParam gridParam){
 	
@@ -48,12 +48,12 @@ public class ${model.domainName}Controller {
 		return jsonRes;
 	}
 	
-	@RequestMapping(value=""/create")
+	@RequestMapping(value="/create")
 	@ResponseBody
 	public SimpleJsonResponse create(SimpleJsonResponse jsonRes, ${model.dtoSimpleName} ${model.domainArgName}){
 		
 		service.insert${model.domainName}(${model.domainArgName});
-		jsonRes.setMsg("사용자가 정상적으로 생성되었습니다.");
+		//jsonRes.setMsg("사용자가 정상적으로 생성되었습니다.");
 		
 		
 		return jsonRes;
@@ -64,7 +64,7 @@ public class ${model.domainName}Controller {
 	public SimpleJsonResponse update(SimpleJsonResponse jsonRes, ${model.dtoSimpleName} ${model.domainArgName}){
 		
 		service.update${model.domainName}(${model.domainArgName});
-		jsonRes.setMsg("사용자 정보가 정상적으로 수정되었습니다.");
+		//jsonRes.setMsg("사용자 정보가 정상적으로 수정되었습니다.");
 		
 		
 		return jsonRes;
@@ -75,7 +75,7 @@ public class ${model.domainName}Controller {
 	public SimpleJsonResponse delete(SimpleJsonResponse jsonRes, ${model.dtoSimpleName} ${model.domainArgName}){
 		
 		service.delete${model.domainName}(${model.domainArgName});
-		jsonRes.setMsg("사용자 정보가 정상적으로 삭제되었습니다.");
+		//jsonRes.setMsg("사용자 정보가 정상적으로 삭제되었습니다.");
 		
 		return jsonRes;
 	}
