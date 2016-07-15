@@ -1,18 +1,16 @@
 package ${model.controllerPackageName};
 
-import javax.servlet.http.HttpSession;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.athena.peacock.controller.web.common.model.DtoJsonResponse;
-import com.athena.peacock.controller.web.common.model.ExtjsGridParam;
-import com.athena.peacock.controller.web.common.model.GridJsonResponse;
-import com.athena.peacock.controller.web.common.model.SimpleJsonResponse;
+
 
 /**
  * <pre>
@@ -37,54 +35,44 @@ public class ${model.domainName}Controller {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@RequestMapping(value="/list", method = RequestMethod.GET)
+	@RequestMapping(value="/all", method = RequestMethod.GET)
 	@ResponseBody
-	public GridJsonResponse list(ExtjsGridParam gridParam){
+	public GridJsonResponse allList(GridJsonResponse jsonRes){
 	
-		GridJsonResponse jsonRes = new GridJsonResponse();
-		jsonRes.setTotal(service.get${model.domainName}ListTotalCount(gridParam));
-		jsonRes.setList(service.get${model.domainName}List(gridParam));
+		List<${model.domainName}> list = service.get${model.domainName}AllList();
+
+		jsonRes.setTotal(list.size());
+		jsonRes.setList(list);
 		
 		return jsonRes;
 	}
 	
-	@RequestMapping(value="/create")
+	@RequestMapping(value="/save", method = RequestMethod.POST)
 	@ResponseBody
-	public SimpleJsonResponse create(SimpleJsonResponse jsonRes, ${model.dtoSimpleName} ${model.domainArgName}){
+	public SimpleJsonResponse save(SimpleJsonResponse jsonRes, ${model.dtoSimpleName} ${model.domainArgName}){
 		
 		service.insert${model.domainName}(${model.domainArgName});
-		//jsonRes.setMsg("사용자가 정상적으로 생성되었습니다.");
+		//jsonRes.setMsg(" 정상적으로 생성되었습니다.");
 		
 		
 		return jsonRes;
 	}
 	
-	@RequestMapping(value="/update")
+	@RequestMapping(value="/{${model.domainArgName}Id}", , method = RequestMethod.DELETE)
 	@ResponseBody
-	public SimpleJsonResponse update(SimpleJsonResponse jsonRes, ${model.dtoSimpleName} ${model.domainArgName}){
+	public SimpleJsonResponse delete(SimpleJsonResponse jsonRes, @PathVariable("${model.domainArgName}Id") Long ${model.domainArgName}Id){
 		
-		service.update${model.domainName}(${model.domainArgName});
-		//jsonRes.setMsg("사용자 정보가 정상적으로 수정되었습니다.");
-		
-		
-		return jsonRes;
-	}
-	
-	@RequestMapping(value="/delete")
-	@ResponseBody
-	public SimpleJsonResponse delete(SimpleJsonResponse jsonRes, ${model.dtoSimpleName} ${model.domainArgName}){
-		
-		service.delete${model.domainName}(${model.domainArgName});
+		service.delete${model.domainName}(${model.domainArgName}Id);
 		//jsonRes.setMsg("사용자 정보가 정상적으로 삭제되었습니다.");
 		
 		return jsonRes;
 	}
 	
-	@RequestMapping(value="/get${model.domainName}", method = RequestMethod.GET)
+	@RequestMapping(value="/{${model.domainArgName}Id}", method = RequestMethod.GET)
 	@ResponseBody
-	public SimpleJsonResponse get${model.domainName}(SimpleJsonResponse jsonRes, ${model.dtoSimpleName} ${model.domainArgName}){
+	public SimpleJsonResponse get${model.domainName}(SimpleJsonResponse jsonRes, , @PathVariable("${model.domainArgName}Id") Long ${model.domainArgName}Id){
 	
-		jsonRes.setData(service.get${model.domainName}(${model.domainArgName}));
+		jsonRes.setData(service.get${model.domainName}(${model.domainArgName}Id));
 		
 		return jsonRes;
 	}

@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.athena.peacock.controller.web.common.model.ExtjsGridParam;
 
 /**
  * <pre>
@@ -28,25 +27,29 @@ public class ${model.domainName}Service {
 		${model.daoFieldName}.insert${model.domainName}(${model.domainArgName});
 	}
 	
-	public List<${model.dtoSimpleName}> get${model.domainName}List(ExtjsGridParam gridParam){
-		return ${model.daoFieldName}.get${model.domainName}List(gridParam);
+	public List<${model.dtoSimpleName}> get${model.domainName}AllList(){
+		return ${model.daoFieldName}.findAll();
 	}
 	
-	public int get${model.domainName}ListTotalCount(ExtjsGridParam gridParam){
+	/*
+	public int get${model.domainName}ListTotalCount(GridParam gridParam){
 		
 		return ${model.daoFieldName}.get${model.domainName}ListTotalCount(gridParam);
 	}
+	*/
 	
-	public ${model.dtoSimpleName} get${model.domainName}(${model.dtoSimpleName} ${model.domainArgName}){
-		return ${model.daoFieldName}.get${model.domainName}(${model.domainArgName});
+	public ${model.dtoSimpleName} get${model.domainName}(Long ${model.domainArgName}Id){
+		return ${model.daoFieldName}.findOne(${model.domainArgName}Id);
 	}
 	
+	/*
 	public void update${model.domainName}(${model.dtoSimpleName} ${model.domainArgName}){
 		${model.daoFieldName}.update${model.domainName}(${model.domainArgName});
 	}
+	*/
 	
-	public void delete${model.domainName}(${model.dtoSimpleName} ${model.domainArgName}){
-		${model.daoFieldName}.delete${model.domainName}(${model.domainArgName});
+	public void delete${model.domainName}(Long ${model.domainArgName}Id){
+		${model.daoFieldName}.delete(${model.domainArgName}Id);
 	}
 
 }
