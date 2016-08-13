@@ -23,8 +23,8 @@ public class ${model.domainName}Service {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void insert${model.domainName}(${model.dtoSimpleName} ${model.domainArgName}){
-		${model.daoFieldName}.insert${model.domainName}(${model.domainArgName});
+	public void save(${model.dtoSimpleName} ${model.domainArgName}){
+		${model.daoFieldName}.save(${model.domainArgName});
 	}
 	
 	public List<${model.dtoSimpleName}> get${model.domainName}AllList(){

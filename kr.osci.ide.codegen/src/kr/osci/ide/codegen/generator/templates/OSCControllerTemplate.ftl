@@ -47,18 +47,18 @@ public class ${model.domainName}Controller {
 		return jsonRes;
 	}
 	
-	@RequestMapping(value="/save", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
 	public SimpleJsonResponse save(SimpleJsonResponse jsonRes, ${model.dtoSimpleName} ${model.domainArgName}){
 		
-		service.insert${model.domainName}(${model.domainArgName});
+		service.save(${model.domainArgName});
 		//jsonRes.setMsg(" 정상적으로 생성되었습니다.");
 		
 		
 		return jsonRes;
 	}
 	
-	@RequestMapping(value="/{${model.domainArgName}Id}", , method = RequestMethod.DELETE)
+	@RequestMapping(value="/{${model.domainArgName}Id}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public SimpleJsonResponse delete(SimpleJsonResponse jsonRes, @PathVariable("${model.domainArgName}Id") Long ${model.domainArgName}Id){
 		
