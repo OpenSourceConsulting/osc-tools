@@ -506,7 +506,8 @@ public class JavaClassCreator {
 			for (int i = 0; i < fields.length; i++) {
 				
 				
-				IField field = createdType.createField(fields[i].getFieldContents(), null, false, monitor);
+				IField field = createdType.createField(fields[i].getFieldContents(i), null, false, monitor);
+				
 				
 				String methodName = GetterSetterUtil.getGetterName(field, null);
 				

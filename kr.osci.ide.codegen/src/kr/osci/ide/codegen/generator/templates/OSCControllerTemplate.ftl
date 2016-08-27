@@ -47,6 +47,17 @@ public class ${model.domainName}Controller {
 		return jsonRes;
 	}
 	
+	@RequestMapping(value="/list", method = RequestMethod.GET)
+	@ResponseBody
+	public SimpleJsonResponse getList(SimpleJsonResponse jsonRes, @PageableDefault(sort = { "createDt" }, direction = Direction.DESC) Pageable pageable, String search){
+	
+		Page<${model.domainName}> list = service.get${model.domainName}List(pageable, search);
+
+		jsonRes.setData(list);
+		
+		return jsonRes;
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
 	public SimpleJsonResponse save(SimpleJsonResponse jsonRes, ${model.dtoSimpleName} ${model.domainArgName}){

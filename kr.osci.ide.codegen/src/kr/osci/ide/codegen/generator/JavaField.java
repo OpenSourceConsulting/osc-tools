@@ -71,10 +71,14 @@ public class JavaField {
 		this.column = column;
 	}
 	
-	public String getFieldContents(){
+	public String getFieldContents(int fieldIndex){
 		
 		String fc = "private "+ type + " " + name + ";//" + this.column.getComments();
 		if(JavaField.useJPA){
+			
+			if (fieldIndex == 0) {
+				fc = "@Id\r\n@GeneratedValue(strategy = GenerationType.AUTO)\r\n" + fc;
+			}
 			fc = "@Column(name = \""+ this.column.getName() +"\")\r\n" + fc;
 		}
 		
