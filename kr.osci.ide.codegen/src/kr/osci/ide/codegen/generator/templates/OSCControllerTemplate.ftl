@@ -77,7 +77,7 @@ public class ${model.domainName}Controller {
 	public SimpleJsonResponse save(SimpleJsonResponse jsonRes, ${model.dtoSimpleName} ${model.domainArgName}){
 		
 		service.save(${model.domainArgName});
-		//jsonRes.setMsg(" 정상적으로 생성되었습니다.");
+		//jsonRes.setMsg(messageSource.getMessage("account.email.not.reg", new String[]{userEmail}, locale));
 		
 		
 		return jsonRes;
