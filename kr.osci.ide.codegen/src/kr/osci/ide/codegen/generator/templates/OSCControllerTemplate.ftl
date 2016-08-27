@@ -4,6 +4,12 @@ package ${model.controllerPackageName};
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.MessageSource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +28,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/${model.domainName}")
 public class ${model.domainName}Controller {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(${model.domainName}Controller.class);
 	
 	@Autowired
 	private ${model.domainName}Service service;
+	
+	@Autowired
+	private MessageSource messageSource;
+	
+	//@Value("${gemmy.upload.location}")
+	//private String uploadPath;
 
 	/**
 	 * <pre>
